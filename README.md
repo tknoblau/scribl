@@ -1,4 +1,4 @@
-# scribl
+# scribl.py
 Exporting Splunk Data at Scale with Scribl.  This is a python script that can be run on each Splunk Indexer for the purpose of exporting historical bucket data (raw events + metadata) at scale by balancing the work across multiple CPUs then forwarding to Cribl.
 
 # Background
@@ -25,4 +25,15 @@ There will be many buckets so some poor soul will need to build a script to expo
 # Requirements
 
 Splunk stores its collected data on the indexers within the “Indexing Tier” as detailed below.  The data is compressed and stored in a collection of time series buckets that reside on each indexer.  Each bucket contains a rawdata journal, along with associated tsidx, and metadata files. The search heads access these buckets and it’s very rare for someone to access them directly from the indexer CLI unless there is a need to export data to retrieve the original raw events.  We will use the indexer CLI to export the original raw events (per bucket and in parallel) as well as a few other pieces of important metadata as detailed below. 
+
+![scribl.py data flow](/scribl-flow.png)
+
+For a deeper dive into how Splunk indexes data, see this:  [How the indexer stores indexes - Splunk Documentation](https://docs.splunk.com/Documentation/Splunk/latest/Indexer/HowSplunkstoresindexes) 
+
+You will need:
+
+- CLI access to each Linux indexer with the index/buckets that need to be exported which means this process only applies to on-prem or non-SplunkCloud deployments.
+- To install nc (netcat) on each indexer to act as the transport mechanism until we have enough demand to build the transport into the script.
+- To make sure outbound communication from each indexer to the Cribl Worker TCP port is open.
+
 
