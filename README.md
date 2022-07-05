@@ -90,6 +90,6 @@ Example:
 </Data></EventData></Event>","_indextime::1564734908 punct::<_='://../////'><><_='--'_='{----}'/><></><></><><"
 ```
 ## Cribl Stream Config
-![scribl.py data flow](/scribl-flow.png)
+You can get started instantly with Cribl Cloud or even using the Cribl Free [license option](https://docs.cribl.io/stream/licensing/) but keep in mind daily ingest limits (very generous) and # of cores (also very generous at 10) that can be used may factor into a full blown data export. 
 
 
