@@ -4,7 +4,7 @@ Exporting Splunk Data at Scale with Scribl.  This is a python script that can be
 # Background
 Splunk to Cribl = scribl (#thanksKam)
 
-Exporting large amounts of previously indexed data from Splunk is unrealistic via the Splunk-supported approaches detailed here:  https://docs.splunk.com/Documentation/Splunk/8.2.6/Search/Exportsearchresults.
+Exporting large amounts of previously indexed data from Splunk is challanging via the Splunk-supported approaches detailed here:  https://docs.splunk.com/Documentation/Splunk/8.2.6/Search/Exportsearchresults.
 
 The core Splunk binary in every install provides a switch (cmd exporttool) that allows you to export the data from the compressed buckets on the indexers back into their original raw events.  You can dump them to very large local csv files or stream them to stdout so a script can redirect over the network to a receiver such as Cribl Stream.  Very few people know about this switch.  
 
