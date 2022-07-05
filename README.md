@@ -90,7 +90,7 @@ Example:
 </Data></EventData></Event>","_indextime::1564734908 punct::<_='://../////'><><_='--'_='{----}'/><></><></><><"
 ```
 
-##Cribl Stream Routing
+## Cribl Stream Routing
 The routing of data as you need it into the destination you need it to be in is one of the most important use cases Cribl Stream brings to the table.  Scribl is a great use case for that exact scenario.  You will likely have indexes you wish to export which contain multiple sourcetypes.  The Splunk sourcetype assignment is contained in every event that Cribl Stream processes.  You can filter, optimize, route, etc each of those sourcetypes however you choose.  We used Splunk's Boss of the SOC dataset for testing largely because it is real-world security data ingested during a live campaign and it contains a very diverse collection of data (souretypes) to best flush out unexpected bugs (multiline events, gigantic events, etc).  The github repo details over 100 sourcetypes available in the BOTSv3 dataset.
 
 ## Cribl Stream Config
@@ -98,7 +98,7 @@ You can get started instantly with Cribl Cloud or even using the Cribl Free [lic
 
 Once you have satisfied the above requirements (CLI, nc, and firewall) on your Splunk indexers, grab the [scribl.py script from the github repo](https://github.com/criblio/scribl) and copy it over to each indexer.  The only thing in the script that is hard coded is the default install location of Splunk (/opt/splunk) which you can easily modify if you are running a non-default config.  Keep in mind that we are running the script directly on the Splunk indexers and a python binary is kept under $SPLUNK_HOME/bin.  
 
-Reference or download [this pdf document](https://github.com/criblio/scribl/blob/main/PROJ-ExportingSplunkDataatScalewithScribl-050722-2001.pdf) for detailed Cribl Stream configuration guidelines.
+Reference or download [this pdf document](https://github.com/criblio/scribl/blob/main/scribl-detailed-config.pdf) for detailed Cribl Stream configuration guidelines.
 
 # Caveats:
 
