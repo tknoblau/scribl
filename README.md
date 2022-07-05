@@ -104,7 +104,7 @@ Reference or download [this pdf document](https://github.com/criblio/scribl/blob
 
 ## Splunk Event Sizes
 
-You need to pay attention to event sizes in Splunk as it pertains to the Event breaking in Cribl.  As noted above in the Event Breaker screenshot, the max event size has a default setting of 51200 bytes.  If you use scribl to send events into Cribl Stream larger than that, things break.  Either increase you event breaking max event size, use the Cribl Stream Pipeline to drop the large events (example:  by sourcetype), or do not use scribl to export the buckets containing the large events.
+You need to pay attention to event sizes in Splunk as it pertains to the Event breaking in Cribl.  As noted above in the Event Breaker screenshot, the max event size has a default setting of 51200 bytes.  If you use scribl to send events into Cribl Stream larger than that, things break.  Either increase your event breaking max event size, use the Cribl Stream Pipeline to drop the large events (example:  by sourcetype), or do not use scribl to export the buckets containing the large events.
 
 Here is a quick Splunk search highlighting the large events that need to be dealt with: index=bots|eval l=len(_raw)|where l>25000|stats count values(sourcetype) by l|sort - l
 
