@@ -89,10 +89,30 @@ Example:
 
 </Data></EventData></Event>","_indextime::1564734908 punct::<_='://../////'><><_='--'_='{----}'/><></><></><><"
 ```
-## Cribl Stream Config
-You can get started instantly with Cribl Cloud or even using the Cribl Free [license option](https://docs.cribl.io/stream/licensing/) but keep in mind daily ingest limits (very generous) and # of cores (also very generous at 10) that can be used may factor into a full blown data export. If you choose to install Cribl Stream on-prem on in your own cloud, the [documentation](https://docs.cribl.io/stream/getting-started-guide) is your friend and will get you going quickly.
 
-Once you have satisfied the above requirements (CLI, nc, and firewall) on your Splunk indexers, grab the [scribl.py script from the github repo](https://github.com/criblio/scribl) and copy it over to each indexer.  The only thing in the script that is hard coded is the default install location of Splunk (/opt/splunk) which you can easily modify if you are running a non-default config.  Keep in mind that we are running the script directly on the Splunk indexers and a pythin bunary is kep under $SPLUNK_HOME/bin.  
+##Cribl Stream Routing
+The routing of data as you need it into the destination you need it to be in is one of the most important use cases Cribl Stream brings to the table.  Scribl is a great use case for that exact scenario.  You will likely have indexes you wish to export which contain multiple sourcetypes.  The Splunk sourcetype assignment is contained in every event that Cribl Stream processes.  You can filter, optimize, route, etc each of those sourcetypes however you choose.  We used Splunk's Boss of the SOC dataset for testing largely because it is real-world security data ingested during a live campaign and it contains a very diverse collection of data (souretypes) to best flush out unexpected bugs (multiline events, gigantic events, etc).  The github repo details over 100 sourcetypes available in the BOTSv3 dataset.
+
+## Cribl Stream Config
+You can get started instantly with Cribl Cloud or even using the Cribl Free [license option](https://docs.cribl.io/stream/licensing/) but keep in mind daily ingest limits (very generous) and # of cores (also very generous at 10) that can be used may factor into a full scale data export. If you choose to install Cribl Stream on-prem on in your own cloud, the [documentation](https://docs.cribl.io/stream/getting-started-guide) is your friend and will get you going quickly.
+
+Once you have satisfied the above requirements (CLI, nc, and firewall) on your Splunk indexers, grab the [scribl.py script from the github repo](https://github.com/criblio/scribl) and copy it over to each indexer.  The only thing in the script that is hard coded is the default install location of Splunk (/opt/splunk) which you can easily modify if you are running a non-default config.  Keep in mind that we are running the script directly on the Splunk indexers and a python binary is kept under $SPLUNK_HOME/bin.  
+
+Reference or download [this pdf document](https://github.com/criblio/scribl/blob/main/PROJ-ExportingSplunkDataatScalewithScribl-050722-2001.pdf) for detailed Cribl Stream configuration guidelines.
+
+#Caveats:
+
+##Splunk Event Sizes
+
+You need to pay attention to event sizes in Splunk as it pertains to the Event breaking in Cribl.  As noted above in the Event Breaker screenshot, the max event size has a default setting of 51200 bytes.  If you use scribl to send events into Cribl Stream larger than that, things break.  Either increase you event breaking max event size, use the Cribl Stream Pipeline to drop the large events (example:  by sourcetype), or do not use scribl to export the buckets containing the large events.
+
+Here is a quick Splunk search highlighting the large events that need to be dealt with: index=bots|eval l=len(_raw)|where l>25000|stats count values(sourcetype) by l|sort - l
+
+##Bottlenecks
+
+As mentioned above, the bottleneck you will most likely run into will be bndwidth in your data path or ingest rate at the final destination.  Anything you can do to parallelize that final write will pay dividends.  For example, you may want to use Cribl Stream’s Output Router to write to multiple S3 buckets based on the original Splunk Index or Sourcetype if bandwidth is not your bottleneck.
+
+
 
 
 
