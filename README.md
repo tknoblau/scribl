@@ -24,7 +24,7 @@ There will be many buckets so some poor soul will need to build a script to expo
 
 # Requirements
 
-Splunk stores its collected data on the indexers within the “Indexing Tier” as detailed below.  The data is compressed and stored in a collection of time series buckets that reside on each indexer.  Each bucket contains a rawdata journal, along with associated tsidx, and metadata files. The search heads access these buckets and it’s very rare for someone to access them directly from the indexer CLI unless there is a need to export data to retrieve the original raw events.  We will use the indexer CLI to export the original raw events (per bucket and in parallel) as well as a few other pieces of important metadata as detailed below. 
+Splunk stores its collected data on the indexers within the “Indexing Tier” as detailed below.  The data is compressed and stored in a collection of time series buckets that reside on each indexer.  Each bucket contains a rawdata journal, along with associated tsidx, and metadata files. The search heads access these buckets and it’s very rare for someone to access them directly from the indexer CLI unless there is a need to export data to retrieve the original raw events.  We will use the indexer CLI to export the original raw events (per bucket and in parallel) and a few other pieces of important metadata as detailed below. 
 
 ![scribl.py data flow](/scribl-flow.png)
 
