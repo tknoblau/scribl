@@ -32,7 +32,7 @@ For a deeper dive into how Splunk indexes data, see this:  [How the indexer stor
 
 You will need:
 
-- CLI access to each Linux indexer with the index/buckets that need to be exported which means this process only applies to on-prem or non-SplunkCloud deployments.
+- CLI access to each Linux indexer with the index/buckets that need to be exported.  This process only applies to on-prem or non-SplunkCloud deployments.
 - To install nc (netcat) on each indexer to act as the transport mechanism until we have enough demand to build the transport into the script.
 - To make sure outbound communication from each indexer to the Cribl Worker TCP port is open.
 
