@@ -90,6 +90,12 @@ Example:
 </Data></EventData></Event>","_indextime::1564734908 punct::<_='://../////'><><_='--'_='{----}'/><></><></><><"
 ```
 ## Cribl Stream Config
-You can get started instantly with Cribl Cloud or even using the Cribl Free [license option](https://docs.cribl.io/stream/licensing/) but keep in mind daily ingest limits (very generous) and # of cores (also very generous at 10) that can be used may factor into a full blown data export. 
+You can get started instantly with Cribl Cloud or even using the Cribl Free [license option](https://docs.cribl.io/stream/licensing/) but keep in mind daily ingest limits (very generous) and # of cores (also very generous at 10) that can be used may factor into a full blown data export. If you choose to install Cribl Stream on-prem on in your own cloud, the [documentation](https://docs.cribl.io/stream/getting-started-guide) is your friend and will get you going quickly.
+
+Once you have satisfied the above requirements (CLI, nc, and firewall) on your Splunk indexers, grab the [scribl.py script from the github repo](https://github.com/criblio/scribl) and copy it over to each indexer.  The only thing in the script that is hard coded is the default install location of Splunk (/opt/splunk) which you can easily modify if you are running a non-default config.  Keep in mind that we are running the script directly on the Splunk indexers and a pythin bunary is kep under $SPLUNK_HOME/bin.  
+
+
+
+
 
 
