@@ -100,15 +100,15 @@ Once you have satisfied the above requirements (CLI, nc, and firewall) on your S
 
 Reference or download [this pdf document](https://github.com/criblio/scribl/blob/main/PROJ-ExportingSplunkDataatScalewithScribl-050722-2001.pdf) for detailed Cribl Stream configuration guidelines.
 
-#Caveats:
+# Caveats:
 
-##Splunk Event Sizes
+## Splunk Event Sizes
 
 You need to pay attention to event sizes in Splunk as it pertains to the Event breaking in Cribl.  As noted above in the Event Breaker screenshot, the max event size has a default setting of 51200 bytes.  If you use scribl to send events into Cribl Stream larger than that, things break.  Either increase you event breaking max event size, use the Cribl Stream Pipeline to drop the large events (example:  by sourcetype), or do not use scribl to export the buckets containing the large events.
 
 Here is a quick Splunk search highlighting the large events that need to be dealt with: index=bots|eval l=len(_raw)|where l>25000|stats count values(sourcetype) by l|sort - l
 
-##Bottlenecks
+## Bottlenecks
 
 As mentioned above, the bottleneck you will most likely run into will be bndwidth in your data path or ingest rate at the final destination.  Anything you can do to parallelize that final write will pay dividends.  For example, you may want to use Cribl Stream’s Output Router to write to multiple S3 buckets based on the original Splunk Index or Sourcetype if bandwidth is not your bottleneck.
 
