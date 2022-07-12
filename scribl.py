@@ -32,7 +32,6 @@ def list_full_paths(directory,earliest,latest):
         dirParsed=dir.split('_')
         maxEpoch=dirParsed[1]
         minEpoch=dirParsed[2]
-        #if not earliest < int(maxEpoch) and latest > int(minEpoch):
         if not earliest < int(minEpoch) and latest > int(maxEpoch):
             dirs.remove(dir)
     return [os.path.join(directory, file) for file in dirs]
