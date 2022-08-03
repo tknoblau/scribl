@@ -110,7 +110,7 @@ Here is a quick Splunk search highlighting the large events that need to be deal
 
 ## Bottlenecks
 
-As mentioned above, the bottleneck you will most likely run into will be bndwidth in your data path or ingest rate at the final destination.  Anything you can do to parallelize that final write will pay dividends.  For example, you may want to use Cribl Stream’s Output Router to write to multiple S3 buckets based on the original Splunk Index or Sourcetype if bandwidth is not your bottleneck.
+As mentioned above, the bottleneck you will most likely run into will be bandwidth in your data path or ingest rate at the final destination.  Anything you can do to parallelize that final write will pay dividends.  For example, you may want to use Cribl Stream’s Output Router to write to multiple S3 buckets based on the original Splunk Index or Sourcetype if bandwidth is not your bottleneck.
 
 
 
